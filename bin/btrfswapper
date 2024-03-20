@@ -1,0 +1,45 @@
+#!/bin/bash
+
+echo "[ BTRFSwapper - Easy swapfile and swapiness management on btrfs fs ]"
+
+if [ -z $1 ]; then
+	echo "Usage: btrfswapper nG (example: btrfswapper 8G will create a 8GB swap file)"
+	exit
+fi
+
+if [ -z $2]; then
+	SWAPINESS_SET=60
+else
+	SWAPINESS_SET=$2
+fi
+
+sudo echo "Hey, we need to write on the top directory!"
+cd /
+
+if test -d "swapdir"; then
+	cd swapdir
+else
+	sudo mkdir swapdir
+	cd swapdir
+fi
+
+if test -f "swapfile"; then
+	sudo truncate -s 0 swapfile
+else
+	sudo dd if=/dev/zero of=/swapdir/swapfile bs=1G count=1
+	sudo truncate -s 0 swapfile
+fi
+sudo chattr +C swapfile
+sudo fallocate -l $1 swapfile
+sudo chmod 0600 swapfile
+sudo mkswap swapfile
+sudo swapon swapfile
+
+echo "[ ok ] Done, your swapfile should be ok!"
+echo "[ ... ] Setting swappiness...(temporarily. To make it persistant do it yourself)"
+echo "[!] Look, you can make it persistant by editing /etc/sysctl.conf and locating vm.swappiness"
+echo "[!] Is quite too dangerous for me."
+echo "[*] Better safe than sorry"
+sudo sysctl vm.swappiness=$SWAPINESS_SET
+echo "[ ok ] swappiness for the current session is now $SWAPINESS_SET"
+
