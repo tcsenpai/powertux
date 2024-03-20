@@ -10,7 +10,7 @@ import sys
 
 print(len(sys.argv))
 
-if not len(sys.argv)==2:
+if len(sys.argv) != 2:
   print("Error: no argument provided or too  many arguments provided.\nUse 'something like this' to execute commands with spaces.")
   exit()
 
