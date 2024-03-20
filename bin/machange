@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Requirements:
+# macchanger [ on Ubuntu: sudo apt-get install macchanger | dnf and pacman -S works too ]
+WIFICARD="wlp2s0"
+echo "MAC Address for WiFi card: $(ip link show $WIFICARD | grep link)"
+# Downing the WiFi card
+sudo ip link set $WIFICARD down
+# Do the magic
+sudo macchanger -r $WIFICARD
+# Upping the WiFi card
+sudo ip link set $WIFICARD up
+echo "MAC Address for WiFi card: $(ip link show $WIFICARD | grep link)"
+echo "..:: G O O D  L U C K  I  A M  B E H I N D  7  P R O X I E S ::.."
