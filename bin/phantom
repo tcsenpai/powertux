@@ -1,0 +1,19 @@
+#!/bin/python
+#
+# This module aims to be an easy way to run things detaching both output and process
+# It requires a $1
+#
+#
+
+import os
+import sys
+
+print(len(sys.argv))
+
+if not len(sys.argv)==2:
+  print("Error: no argument provided or too  many arguments provided.\nUse 'something like this' to execute commands with spaces.")
+  exit()
+
+print(sys.argv[1])
+
+os.system(sys.argv[1] + " </dev/null &>/dev/null &")
