@@ -1,0 +1,3 @@
+#!/bin/bash
+killall waybar || echo "Waybar is not running. That's ok." 
+/usr/bin/waybar
