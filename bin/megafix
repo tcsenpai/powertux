@@ -1,0 +1,3 @@
+#!/bin/zsh
+killall megasync
+nohup /bin/megasync --nogfx &
