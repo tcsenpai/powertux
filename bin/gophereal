@@ -1,0 +1,6 @@
+#!/bin/bash
+
+curl "$1" > dump_tmp_file
+cat dump_tmp_file | grep -Eo "(http|https)://[a-zA-Z0-9./?=_%:-]*" | sort -u > gophereal_links
+rm -rf dump_tmp_file
+cat gophereal_links
