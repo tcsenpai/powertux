@@ -1,0 +1,7 @@
+#!/bin/bash
+
+THIS=$(pwd)
+echo "export PATH=\$PATH:$THIS" >> "$HOME/.profile"
+echo $PATH
+echo "Done!"
+
