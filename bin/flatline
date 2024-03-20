@@ -1,0 +1,29 @@
+#!/bin/bash
+
+FILENAME=$1
+PATH=$(pwd)
+
+echo "⟦ F L A T L I N E  installer ⟧"
+echo ""
+echo "⟌Installing $FILENAME"
+echo "⟌Located in $PATH"
+echo ""
+
+if [ ! -f $FILENAME ]; then
+	echo "ㄖ This file is not existant"
+	exit
+fi
+
+cd $PATH
+/usr/bin/flatpak install -y --noninteractive $FILENAME
+
+if [ $? -eq 0 ]; then
+  echo "ᜀ   Copy successful   ᜀ"
+else
+  echo "ᘐ   Copy failed   ᘐ"
+fi
+
+echo ""
+echo "⽶   D O N E   ⽶"
+read -p "Press enter to continue"
+
