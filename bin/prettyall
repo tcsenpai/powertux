@@ -1,0 +1,4 @@
+#!/bin/zsh
+export NODE_OPTIONS=--max-old-space-size=8192
+prettier "{,!(node_modules)/**/}*.js" --write
+prettier "{,!(node_modules)/**/}*.ts" --write
