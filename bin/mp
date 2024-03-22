@@ -1,0 +1,75 @@
+#!/bin/python
+import os
+import sys
+
+package_managers = [
+    {
+        "name": "apt",
+        "install": "sudo apt install ",
+        "remove": "sudo apt remove ",
+    },
+    {
+        "name": "brew",
+        "install": "brew install ",
+        "remove": "brew remove ",
+    },
+    {
+        "name": "pip",
+        "install": "pip install ",
+        "remove": "pip uninstall ",
+    },
+    {
+        "name": "pipx",
+        "install": "pipx install ",
+        "remove": "pipx uninstall ",
+    },
+    {
+        "name": "npm",
+        "install": "npm install -g ",
+        "remove": "npm uninstall -g ",
+    },
+    {
+        "name": "mist",
+        "install": "mist install ",
+        "remove": "mist remove ",
+    },
+]
+
+
+def get_args():
+    # We need 2 arguments
+    if len(sys.argv) < 3:
+        print("Usage: mp <operation> <package(s)>")
+        sys.exit(-1)
+
+    # Sanity checks
+    possible_operations = ["install", "remove"]
+    operation = sys.argv[1]
+
+    if operation not in possible_operations:
+        print("Invalid operation: " + operation)
+        sys.exit(-1)
+
+    package = sys.argv[2]
+
+    return package, operation
+
+
+def main():
+    args = get_args()
+    package = args[0]
+    operation = args[1]
+    for manager in package_managers:
+        print("\n[mp] Trying with " + manager["name"])
+        # trunk-ignore(bandit/B605)
+        if os.system(manager[operation] + package) == 0:
+            print("\n[mp] Installed with " + manager["name"])
+            sys.exit(0)
+        print("Failed with " + manager["name"])
+
+    print("\n[mp] Failed to install " + package)
+    sys.exit(-2)
+
+
+if __name__ == "__main__":
+    main()

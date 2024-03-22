@@ -34,19 +34,23 @@ A collection of scripts and software I made to save time &amp; mental health, op
     - [megafix](#megafix)
       - [Dependencies](#dependencies-3)
       - [Usage](#usage-8)
-    - [pathis](#pathis)
+    - [mp](#mp)
+      - [Warning \& Disclaimer](#warning--disclaimer-2)
+      - [Requirements](#requirements)
       - [Usage](#usage-9)
+    - [pathis](#pathis)
+      - [Usage](#usage-10)
       - [Various](#various-3)
     - [phantom](#phantom)
-      - [Usage](#usage-10)
+      - [Usage](#usage-11)
       - [Various](#various-4)
     - [prettyall](#prettyall)
       - [Dependencies](#dependencies-4)
-      - [Usage](#usage-11)
+      - [Usage](#usage-12)
       - [Warning](#warning-1)
     - [waybareload](#waybareload)
       - [Dependencies](#dependencies-5)
-      - [Usage](#usage-12)
+      - [Usage](#usage-13)
       - [Warning](#warning-2)
 
 
@@ -182,6 +186,22 @@ Kills and re-run megasync with the --nogfx option to avoid thumbnails generation
 #### Usage
 
 `megafix`
+
+### mp
+A package manager mashup that makes it easy to install stuff when you can't be bothered with multiple package managers. Avoid using 6 commands and check it all at once.
+
+#### Warning & Disclaimer
+The script is very very primitive but it works. Remember to set up your favorite ordering and package managers before executing this program.
+
+For example: `mp install randompackage` will execute one by one package manager commands (apt, brew, pip...) until one of them works. Same goes for `mp remove randompackage`.
+
+#### Requirements
+
+- Set your configuration in this script: the order is followed as it is.
+
+#### Usage
+
+`mp <install/remove> <package>`
 
 ### pathis
 A simple tool to add the current path to the $PATH environment variable permanently
